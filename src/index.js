@@ -5,14 +5,16 @@ const httpServer = http.createServer(handleServer);
 
 function handleServer(req, res) {
   if(req.url === '/welcome'){
-      res.send("Welcome to Dominos!");
+      res.setHeader('Content-Type', 'text/plain');
+      res.write("Welcome to Dominos!");
       res.end();
   }
   if(req.url === '/contact'){
-      res.send({
-        "phone": '18602100000',
-        "email": 'guestcaredominos@jublfood.com'
-        });
+      res.setHeader('Content-Type', 'application/json');
+      res.write(JSON.stringify({
+        phone: '18602100000',
+        email: 'guestcaredominos@jublfood.com'
+        }));
         res.end();
   }else{
       res.statusCode = 404;
